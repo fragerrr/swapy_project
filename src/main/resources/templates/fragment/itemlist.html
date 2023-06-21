@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div th:fragment="itemlist">
+    <table class="table mt-3">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Owner</th>
+        <th>Details</th>
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="item : ${itemList}">
+        <tr>
+            <td th:text="${item.getId()}"></td>
+            <td th:text="${item.getName()}"></td>
+            <td th:text="${item.getPrice()}"></td>
+            <td><a th:href="@{'http://wa.me/' + ${item.getOwner().getPhoneNumber()}}" th:text="${item.getOwner().getPhoneNumber()}"></a></td>
+            <td><a class="btn btn-primary" th:href="@{'/client/details/' + ${item.getId()}}">DETAILS</a></td>
+        </tr>
+      </th:block>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
